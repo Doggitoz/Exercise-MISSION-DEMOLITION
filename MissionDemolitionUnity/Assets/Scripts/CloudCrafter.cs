@@ -35,18 +35,24 @@ public class CloudCrafter : MonoBehaviour
         for (int i = 0; i < _numberOfClouds; i++)
         {
             cloud = Instantiate<GameObject>(_cloudPrefab);
+            //POsition cloud
+            Vector3 cPos = Vector3.zero;
+            cPos.x = Random.Range(_cloudPositionMin.x, _cloudPositionMax.x);
+            cPos.y = Random.Range(_cloudPositionMin.y, _cloudPositionMax.y);
+
+            //Scale clouds
+            float scaleU = Random.value;
+            float scaleVal = Mathf.Lerp(_cloudScaleMin, _cloudScaleMax, scaleU);
+
+            cPos.y = Mathf.Lerp(_cloudPositionMin.y, cPos.y, scaleU);
+            cPos.z = 100 - 90 * scaleU;
+            
+            cloud.transform.position = cPos;
+            cloud.transform.localScale = Vector3.one * scaleVal;
+
+            cloud.transform.SetParent(anchor.transform);
+            _cloudInstances[i] = cloud;
         }
-        //POsition cloud
-        Vector3 cPos = Vector3.zero;
-        cPos.x = Random.Range(_cloudPositionMin.x, _cloudPositionMax.x);
-        cPos.y = Random.Range(_cloudPositionMin.y, _cloudPositionMax.y);
-
-        //Scale clouds
-        float scaleU = Random.value;
-        float scaleVal = Mathf.Lerp(_cloudScaleMin, _cloudScaleMax, scaleU);
-
-        cPos.y = Mathf.Lerp(_cloudPositionMin.y, cPos.y, scaleU);
-
     }
 
     // Start is called before the first frame update
