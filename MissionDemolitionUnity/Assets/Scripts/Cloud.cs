@@ -53,7 +53,6 @@ public class Cloud : MonoBehaviour
             offset.x *= _sphereOffsetScale.x;
             offset.y *= _sphereOffsetScale.y;
             offset.z *= _sphereOffsetScale.z;
-
             spTrans.localPosition = offset;
 
             Vector3 scale = Vector3.one;

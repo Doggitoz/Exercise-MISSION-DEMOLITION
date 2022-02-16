@@ -50,4 +50,4 @@ MonoBehaviour:
   _sphereScalerangeY: {x: 3, y: 4}
   _sphereScalerangeZ: {x: 2, y: 4}
   _sphereOffsetScale: {x: 5, y: 2, z: 1}
-  _scaleYmin: 6
+  _scaleYmin: 2
