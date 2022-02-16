@@ -15,23 +15,38 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
+
+    static private Slingshot S;
     
     [Header ("Set in Inspector")]
     [SerializeField] private GameObject _launchPoint;
     [Header ("Set Dynamically")]
     [SerializeField] private GameObject _prefabProjectile;
-    private Vector3 _launchPos;
+    public Vector3 launchPos;
     private GameObject _projectile; //Instance of projectile
     private bool _aimingMode; //Is playing aiming slingshot
     private Rigidbody _projectileRB;
     private float _velocilyMultiplier = 9f;
 
+    static public Vector3 Launch_Pos
+    {
+        get
+        {
+            if (S == null)
+            {
+                return Vector3.zero;
+            }
+            return S.launchPos;
+        }
+    }
+
     private void Awake()
     {
+        S = this;
         Transform LaunchPointTrans = transform.Find("LaunchPoint");
         _launchPoint = LaunchPointTrans.gameObject;
         _launchPoint.SetActive(false);
-        _launchPos = LaunchPointTrans.position;
+        launchPos = LaunchPointTrans.position;
     }
 
     // Start is called before the first frame update
@@ -49,7 +64,7 @@ public class Slingshot : MonoBehaviour
         Vector3 mousePos2D = Input.mousePosition;
         mousePos2D.z = -Camera.main.transform.position.z;
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
-        Vector3 mouseDelta = mousePos3D - _launchPos;
+        Vector3 mouseDelta = mousePos3D - launchPos;
 
         //limit mouseDelta to slingshot collider radisu
         float maxMagnitude = this.GetComponent<SphereCollider>().radius;
@@ -61,10 +76,8 @@ public class Slingshot : MonoBehaviour
         }
 
         //Move projectile to new position
-        Vector3 projectilePos = _launchPos + mouseDelta;
+        Vector3 projectilePos = launchPos + mouseDelta;
         _projectile.transform.position = projectilePos;
-
-        Debug.Log(Input.GetMouseButtonUp(0));
 
         if(Input.GetMouseButtonUp(0))
         {
@@ -91,7 +104,7 @@ public class Slingshot : MonoBehaviour
     {
         _aimingMode = true;
         _projectile = Instantiate(_prefabProjectile) as GameObject;
-        _projectile.transform.position = _launchPos;
+        _projectile.transform.position = launchPos;
         _projectileRB = _projectile.GetComponent<Rigidbody>();
         _projectileRB.isKinematic = true;
         
