@@ -8,6 +8,7 @@ public class ProjectileLine : MonoBehaviour
 
     [Header("Set in Inspector")]
     [SerializeField] private float _minDist = 0.1f;
+    [SerializeField] Vector2 _lineWidth = new Vector2(0.0f, 0.0f);
 
     private LineRenderer _line;
     private GameObject _poi;
@@ -17,6 +18,7 @@ public class ProjectileLine : MonoBehaviour
     {
         S = this;
         _line = GetComponent<LineRenderer>();
+        _line.SetWidth(_lineWidth.x, _lineWidth.y);
         _line.enabled = false;
         _points = new List<Vector3>();
 

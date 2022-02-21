@@ -85,6 +85,7 @@ public class Slingshot : MonoBehaviour
             _aimingMode = false;
             _projectileRB.isKinematic = false;
             _projectileRB.velocity = -mouseDelta * _velocilyMultiplier;
+            _projectile.GetComponent<SphereCollider>().isTrigger = false;
             FollowCam.POI = _projectile;
             _projectile = null; //empties reference to instance projectile
         }
@@ -104,6 +105,7 @@ public class Slingshot : MonoBehaviour
     {
         _aimingMode = true;
         _projectile = Instantiate(_prefabProjectile) as GameObject;
+        _projectile.GetComponent<SphereCollider>().isTrigger = true;
         _projectile.transform.position = launchPos;
         _projectileRB = _projectile.GetComponent<Rigidbody>();
         _projectileRB.isKinematic = true;
