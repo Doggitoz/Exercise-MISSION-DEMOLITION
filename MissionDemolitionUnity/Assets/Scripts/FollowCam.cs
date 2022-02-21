@@ -51,7 +51,7 @@ public class FollowCam : MonoBehaviour
             destination = POI.transform.position;
             if (POI.tag == "Projectile")
             {
-                if (POI.GetComponent<Rigidbody>().IsSleeping())
+                if (Mathf.Abs(POI.GetComponent<Rigidbody>().velocity.magnitude) < 0.005)
                 {
                     POI = null;
                 }
