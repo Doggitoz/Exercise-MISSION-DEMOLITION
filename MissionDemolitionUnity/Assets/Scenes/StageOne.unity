@@ -1561,6 +1561,7 @@ GameObject:
   - component: {fileID: 1671227338}
   - component: {fileID: 1671227337}
   - component: {fileID: 1671227336}
+  - component: {fileID: 1671227339}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -1644,6 +1645,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671227334}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1671227339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671227334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588038507a2f2b6459bf4fc2fd725761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1695486840
 GameObject:
   m_ObjectHideFlags: 0

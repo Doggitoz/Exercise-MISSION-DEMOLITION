@@ -1,25 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Projectile"))
+            SwitchLevel();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SwitchLevel()
     {
-        
-    }
-    //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }
